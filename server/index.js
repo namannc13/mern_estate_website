@@ -3,6 +3,7 @@ import "./config/db.js";
 import { authRouter } from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import { userRouter } from "./routes/user.route.js";
+import { listingRouter } from "./routes/listing.route.js";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cookieParser())
 
 app.use("/server/auth", authRouter);
 app.use("/server/user", userRouter); 
+app.use("/server/listing", listingRouter); 
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
