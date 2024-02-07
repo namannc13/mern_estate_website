@@ -174,6 +174,7 @@ export default function CreateListing() {
         console.log(data.message);
         return;
       }
+      console.log(data);
       setFormData(data);
       console.log(formData)
     };
@@ -181,6 +182,7 @@ export default function CreateListing() {
     fetchListing();
   }, []);
   console.log(JSON.stringify(formData));
+  
 
   return (
     <main className="p-3 max-w-4xl mx-auto">
