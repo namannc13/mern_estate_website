@@ -150,8 +150,8 @@ export default function Profile() {
         console.log(data.message);
         return;
       }
-      setUserListings((prev) => 
-        prev.filter(listing => listing._id !== listingId)
+      setUserListings((prev) =>
+        prev.filter((listing) => listing._id !== listingId)
       );
     } catch (error) {
       console.log(error.message);
@@ -270,7 +270,9 @@ export default function Profile() {
                 >
                   Delete
                 </button>
-                <button className="text-green-2 uppercase">Edit</button>
+                <Link to={`/update-listing/${listing._id}`}>
+                  <button className="text-green-2 uppercase">Edit</button>
+                </Link>
               </div>
             </div>
           ))}
