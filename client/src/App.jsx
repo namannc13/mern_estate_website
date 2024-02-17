@@ -9,9 +9,11 @@ import CreateListing from "./pages/CreateListing";
 import UpdateListing from "./pages/UpdateListing";
 import Listing from "./pages/Listing";
 import Search from "./pages/Search";
+import { ThemeProvider } from "@/components/shadcn/theme-provider"
 
 export default function App() {
   return (
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <BrowserRouter>
       <Header />
       <Routes>
@@ -27,5 +29,6 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }

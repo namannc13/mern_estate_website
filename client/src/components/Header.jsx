@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ModeToggle } from "./shadcn/mode-toggle";
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user);
@@ -23,17 +24,21 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header className="bg-grey-slate-2 shadow-md">
+    <header className="shadow-md ">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-3">
+        <div className="flex gap-4 items-center">
+
+        <ModeToggle />
         <Link to="/">
           <h1 className="font-bold text-sm sm:text-xl flex flex-wrap">
             <span>chomchom</span>
-            <span>Page</span>
+            <span>Estate</span>
           </h1>
         </Link>
+        </div>
         <form
           onSubmit={handleSubmit}
-          className="bg-slate-100 p-3 rounded-lg flex items-center"
+          className="p-3 rounded-lg flex items-center gap-4"
         >
           <input
             type="text"
@@ -43,18 +48,10 @@ export default function Header() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <button>
-            <FaSearch className="text-slate-600" />
+            <FaSearch className="" />
           </button>
         </form>
-        <ul className="flex gap-4 ">
-          <Link to="/">
-            <li className="hidden sm:inline font-bold hover:underline">Home</li>
-          </Link>
-          <Link to="/">
-            <li className="hidden sm:inline font-bold hover:underline">
-              About
-            </li>
-          </Link>
+        <ul className="flex gap-6">
           <Link to="/profile">
             {currentUser ? (
               <img

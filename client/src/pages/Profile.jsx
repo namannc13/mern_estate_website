@@ -20,6 +20,10 @@ import {
   logoutUserSuccess,
 } from "../redux/user/userSlice";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
+
+
 
 export default function Profile() {
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -35,6 +39,7 @@ export default function Profile() {
 
   const [showListingsError, setShowListingsError] = useState(false);
   const [userListings, setUserListings] = useState([]);
+  const [showListings, setShowListings] = useState(false);
 
   useEffect(() => {
     if (file) {
@@ -126,15 +131,19 @@ export default function Profile() {
 
   const handleShowListings = async () => {
     try {
-      setShowListingsError(false);
-      const res = await fetch(`/server/user/listings/${currentUser._id}`);
-      const data = await res.json();
-      if (data.success === false) {
-        setShowListingsError(data.message);
-        return;
-      }
-      console.log(data);
-      setUserListings(data);
+      setShowListings(!showListings);
+      
+        setShowListingsError(false);
+        const res = await fetch(`/server/user/listings/${currentUser._id}`);
+        const data = await res.json();
+        if (data.success === false) {
+          setShowListingsError(data.message);
+          return;
+        }
+        console.log(data);
+        setUserListings(data);
+        
+      
     } catch (error) {
       setShowListingsError(error.message);
     }
@@ -157,6 +166,7 @@ export default function Profile() {
       console.log(error.message);
     }
   };
+  console.log(showListings);
   return (
     <div className="p-3 max-w-lg mx-auto">
       <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
@@ -208,14 +218,17 @@ export default function Profile() {
           id="password"
           onChange={handleChange}
         />
-        <button
+        {/* <button
           disabled={loading}
           className="bg-grey-slate-3 text-white-1 rounded-lg p-3 uppercase hover:backdrop-opacity-95 disabled:backdrop-opacity-80"
         >
           {loading ? "Loading..." : "Update"}
-        </button>
+        </button> */}
+        <Button
+          disabled={loading}
+        >{loading ? "Loading..." : "UPDATE"}</Button>
         <Link
-          className="bg-green-2 text-white-1 p-3 rounded-lg uppercase text-center hover:opacity-95"
+          className={buttonVariants({ variant: "outline" })}
           to={"/create-listing"}
         >
           Create Listing
@@ -233,14 +246,17 @@ export default function Profile() {
       <p className="mt-5 text-green-2">
         {updateSuccess ? "User is Updated Successfully!" : ""}
       </p>
-      <button onClick={handleShowListings} className="text-green-2 w-full">
-        Show Listings
-      </button>
+      <div className="flex justify-center items-center">
+      <Button variant="outline" onClick={handleShowListings} className="">
+        {showListings? "Hide Listings" : "Show Listings"}
+      </Button>
+
+      </div>
       {showListingsError && (
         <p className="text-red-1 text-sm mt-5">{showListingsError}</p>
       )}
 
-      {userListings && userListings.length > 0 && (
+      {showListings && userListings.length > 0 && (
         <div className="flex flex-col gap-4">
           <h1 className="text-center text-2xl mt-7 font-semibold">
             Your Listings

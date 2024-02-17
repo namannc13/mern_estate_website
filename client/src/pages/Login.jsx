@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { signInStart, signInSuccess, signInFailure } from "../redux/user/userSlice";
-import OAuth from "../components/OAuth";
+
+import { Button } from "@/components/ui/button"
+import { EmailButton } from "@/components/shadcn/login-with-email-button";
+
 
 export default function Login() {
   const { error, loading } = useSelector((state) => state.user);
@@ -60,18 +63,20 @@ export default function Login() {
           id="password"
           onChange={handleChange}
         />
-        <button
+        <Button
+          variant="outline"
           disabled={loading}
-          className="bg-grey-slate-3 p-3 rounded-lg uppercase hover:backdrop-opacity-95 disabled:opacity-80"
+          className=" p-3 rounded-lg uppercase hover:backdrop-opacity-95 disabled:opacity-80"
         >
           {loading ? "loading..." : "Log In"}
-        </button>
-        <OAuth />
+        </Button>
+        <EmailButton name="Login"/>
+        {/* <OAuth /> */}
       </form>
-      <div className="flex gap-2 mt-5">
+      <div className="flex justify-between mt-5">
         <p>Dont Have an Account?</p> {/* DONT write Don't . write Dont as there might be future problems because of using ' */}
         <Link to={"/signup"}>
-          <span className="text-grey-slate-2">Sign Up</span>
+          <span className="">Sign Up</span>
         </Link>
       </div>
       {error && <p className="text-red-500 mt-5">{error}</p>}
