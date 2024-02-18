@@ -9,8 +9,7 @@ import { app } from "../firebase";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button"
-
+import { Button } from "@/components/ui/button";
 
 export default function CreateListing() {
   const [files, setFiles] = useState([]);
@@ -205,66 +204,64 @@ export default function CreateListing() {
             onChange={handleChange}
             value={formData.address}
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-2">
             <div className="flex justify-between mx-auto gap-5">
-            <div className="flex gap-2 items-center">
-              <Input
-                type="checkbox"
-                className="w-5 "
-                id="sale"
-                onChange={handleChange}
-                checked={formData.type === "sale"}
-              />
+              <div className="flex gap-2 items-center">
+                <Input
+                  type="checkbox"
+                  className="w-5 "
+                  id="sale"
+                  onChange={handleChange}
+                  checked={formData.type === "sale"}
+                />
 
-              <span>Sell</span>
-            </div>
-            <div className="flex gap-2 items-center">
-              <Input
-                type="checkbox"
-                className="w-5"
-                id="rent"
-                onChange={handleChange}
-                checked={formData.type === "rent"}
-              />
-              <span>Rent</span>
-            </div>
-
+                <span>Sell</span>
+              </div>
+              <div className="flex gap-2 items-center">
+                <Input
+                  type="checkbox"
+                  className="w-5"
+                  id="rent"
+                  onChange={handleChange}
+                  checked={formData.type === "rent"}
+                />
+                <span>Rent</span>
+              </div>
             </div>
             <div className="flex justify-between">
-
-            <div className="flex gap-2 items-center">
-              <Input
-                type="checkbox"
-                className="w-5"
-                id="parking"
-                onChange={handleChange}
-                checked={formData.parking}
-              />
-              <span>Parking Spot</span>
-            </div>
-            <div className="flex gap-2 items-center">
-              <Input
-                type="checkbox"
-                className="w-5"
-                id="furnished"
-                onChange={handleChange}
-                checked={formData.furnished}
-              />
-              <span>Furnished</span>
-            </div>
-            <div className="flex gap-2 items-center">
-              <Input
-                type="checkbox"
-                className="w-5"
-                id="offer"
-                onChange={handleChange}
-                checked={formData.offer}
-              />
-              <span>Offer</span>
-            </div>
+              <div className="flex gap-2 items-center">
+                <Input
+                  type="checkbox"
+                  className="w-5"
+                  id="parking"
+                  onChange={handleChange}
+                  checked={formData.parking}
+                />
+                <span>Parking Spot</span>
+              </div>
+              <div className="flex gap-2 items-center">
+                <Input
+                  type="checkbox"
+                  className="w-5"
+                  id="furnished"
+                  onChange={handleChange}
+                  checked={formData.furnished}
+                />
+                <span>Furnished</span>
+              </div>
+              <div className="flex gap-2 items-center">
+                <Input
+                  type="checkbox"
+                  className="w-5"
+                  id="offer"
+                  onChange={handleChange}
+                  checked={formData.offer}
+                />
+                <span>Offer</span>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <div className=" flex justify-between">
               <div className="flex items-center gap-2">
                 <Input
@@ -326,7 +323,6 @@ export default function CreateListing() {
                       value={formData.discountedPrice}
                     />
                   </div>
-
                   <div className="flex flex-col items-center w-40">
                     <p>Discounted Price</p>
                     <span className="text-xs">( $ / month)</span>
@@ -366,7 +362,7 @@ export default function CreateListing() {
               disabled={uploading}
               onClick={handleImageSubmit}
             >
-            {uploading ? "Uploading..." : "Upload"}
+              {uploading ? "Uploading..." : "Upload"}
             </Button>
           </div>
           <p className="text-sm">{imageUploadError && imageUploadError}</p>
@@ -381,13 +377,20 @@ export default function CreateListing() {
                   alt="listing image"
                   className="w-20 h-20 object-contain rounded-lg"
                 />
-                <button
+                {/* <button
                   className="p-3 rounded-lg uppercase hover:opacity-75"
                   type="button"
                   onClick={() => handleRemoveImage(index)}
                 >
                   Delete
-                </button>
+                </button> */}
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  Delete
+                </Button>
               </div>
             ))}
           {/* <button
@@ -396,7 +399,9 @@ export default function CreateListing() {
           >
             {loading ? "Creating..." : "Create Listing"}
           </button> */}
-          <Button disabled={loading || uploading}>{loading ? "Creating..." : "Create Listing"}</Button>
+          <Button disabled={loading || uploading}>
+            {loading ? "Creating..." : "Create Listing"}
+          </Button>
           {error && <p className="text-sm">{error}</p>}
         </div>
       </form>

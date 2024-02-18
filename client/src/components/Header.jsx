@@ -38,7 +38,7 @@ export default function Header() {
         </div>
         <form
           onSubmit={handleSubmit}
-          className="p-3 rounded-lg flex items-center gap-4"
+          className="p-1 rounded-lg flex items-center gap-4"
         >
           <input
             type="text"

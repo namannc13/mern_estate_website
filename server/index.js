@@ -8,11 +8,11 @@ import { listingRouter } from "./routes/listing.route.js";
 const app = express();
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use("/server/auth", authRouter);
-app.use("/server/user", userRouter); 
-app.use("/server/listing", listingRouter); 
+app.use("/server/user", userRouter);
+app.use("/server/listing", listingRouter);
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -24,6 +24,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(3000, () => {
+const port = 3000;
+
+app.listen(port, () => {
   console.log("server is running on port 3000");
 });
