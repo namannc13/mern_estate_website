@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/server': {
-        target: 'https://mern-estate-application-vg3c.onrender.com',
+        target: 'http://localhost:3000',
         secure: false
       }
     }
