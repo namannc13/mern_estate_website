@@ -25,7 +25,7 @@ export function EmailButton({ name }) {
 
       const result = await signInWithPopup(auth, provider);
 
-      const res = await fetch("server/auth/google", {
+      const res = await fetch("/server/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
