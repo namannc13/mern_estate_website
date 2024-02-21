@@ -11,8 +11,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/server': {
-        target: `${process.env.SERVER_API}`,
-        secure: false
+        target: process.env.SERVER_API,
+        secure: false,
+        changeOrigin: true,
       }
     }
   },
