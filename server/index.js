@@ -26,6 +26,10 @@ app.use((err, req, res, next) => {
 
 const port = 3000;
 
+app.use("/health", (req, res) => {
+  return res.json("API is up and running properly");
+});
+
 app.listen(port, () => {
   console.log("server is running on port 3000");
 });
