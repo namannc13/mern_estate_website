@@ -11,8 +11,6 @@ import Listing from "./pages/Listing";
 import Search from "./pages/Search";
 import { ThemeProvider } from "@/components/shadcn/theme-provider";
 
-require("dotenv").config();
-
 export default function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
