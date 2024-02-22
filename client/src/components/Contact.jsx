@@ -29,7 +29,8 @@ export default function Contact({ listing }) {
             for{" "}
             <span className="font-semibold">{listing.name.toLowerCase()}</span>
           </p>
-          <textarea
+          <input
+            type="text"
             name="message"
             id="message"
             rows="2"
@@ -37,11 +38,11 @@ export default function Contact({ listing }) {
             onChange={onChange}
             placeholder="Enter your message here..."
             className="w-full border p-3 rounded-lg"
-          ></textarea>
+          ></input>
 
           <Link
             to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
-            className="bg-grey-slate-3 text-white-1 text-center p-3 uppercase rounded-lg hover:opacity-95"
+            className="text-center p-3 uppercase rounded-lg hover:opacity-95"
           >
             Send Message
           </Link>
